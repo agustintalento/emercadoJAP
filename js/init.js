@@ -40,27 +40,19 @@ var getJSONData = function(url){
     });
 }
 
-//function enviarFormulario(evento){
-  evento.preventDefault();
-  location.href = 'login.html';
-};
 
-var loggeado = sessionStorage.getItem("visitado");
-if (loggeado != 1){
-  window.location.href = "login.html";
-  sessionStorage.setItem("visitado", "1");
+if (!window.location.href.endsWith("login.html") && 
+    !(sessionStorage.getItem('logueado'))) { //me redirige al login si no estoy en él
+        window.location.href = "login.html";
+
 };
 
 
-var redireccion = function() {
 
-  window.location.href = "login.html";
-};
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
-  redireccion();
 
 });
