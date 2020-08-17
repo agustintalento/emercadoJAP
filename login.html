@@ -6,6 +6,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="998420607343-9lmtk5lora5djmk16bd3neqqbr8gie3k.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -83,23 +86,27 @@
   <div class="container p-5">
     
 
-    <h4 class="alert-heading">INICIA SESIÓN</h4>
+      <h4 class="alert-heading">INICIA SESIÓN</h4>
+    
+      <form id="log in" action="">
+        <input type="text" id="user" placeholder="Usuario" required><br>
 
-    <form id="log in" action="">
-      <input type="text" id="user" placeholder="Usuario" required><br>
+          
+        <input type="password" id="pass" minlength="6" placeholder="Contraseña" required><br>
+      
+        <label for="recuerdame">Recuerdame </label>
+        <input type="checkbox" id= "recuerdame" checked> <br>
+    
+        <input type="submit"  value="Iniciar sesión" id="inicio">
 
+        <!--login de google-->
+        <div class="g-signin2" data-onsuccess="onSignIn"  data-longtitle="true"></div>
         
-      <input type="password" id="pass" minlength="6" placeholder="Contraseña" required><br>
-    
-      <label for="recuerdame">Recuerdame </label>
-      <input type="checkbox" id= "recuerdame" checked> <br>
-
-      <input type="submit"  value="Iniciar sesión" id="inicio">
-    </form> 
-    
+      </form> 
+      
       
     
-    <hr>
+      <hr>
        
   </div>
   
