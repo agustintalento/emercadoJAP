@@ -40,6 +40,15 @@ var getJSONData = function(url){
     });
 }
 
+//dinamic nombre de usuario
+let nombreUsuario = document.createElement('a');
+
+nombreUsuario.className = 'py-2 d-none d-md-inline-block';
+nombreUsuario.href= "#";
+
+ //guardo nombre de usuario para mostrar en la barra
+ let mostrarUsuario = sessionStorage.getItem('mostrar-usuario')
+ nombreUsuario.innerHTML += mostrarUsuario;
 
 if (!window.location.href.endsWith("login.html") && 
     !(sessionStorage.getItem('logueado'))) { //me redirige al login si no estoy en él
@@ -49,10 +58,15 @@ if (!window.location.href.endsWith("login.html") &&
 
 
 
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
+ //muestro el nombre en la barra
+  document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(nombreUsuario);
 
 });
+
+

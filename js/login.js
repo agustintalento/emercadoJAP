@@ -1,9 +1,16 @@
 function detenerEvento(evento) { //detiene el submit del formulario
     evento.preventDefault();
     sessionStorage.setItem('logueado', 'true');
+    let user = document.getElementById("user").value;
+    sessionStorage.setItem('mostrar-usuario', user);
     window.location.href = 'index.html';
+    
     return true; //envia la información del submit despues de todo
-};
+
+    
+
+
+}
 function onSignIn(googleUser) {
        
     var profile = googleUser.getBasicProfile();
@@ -21,4 +28,5 @@ function onSignIn(googleUser) {
 }
 
 document.getElementById("log in").addEventListener("submit", detenerEvento);
-   
+  
+
