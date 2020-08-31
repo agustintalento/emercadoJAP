@@ -74,7 +74,7 @@ function limpiar() {
 }
 
 function showproductsList(array){
-    console.log(array);
+    
     let htmlContentToAppend = "";
     let filterProducts = filtro(array);
     for(let i = 0; i < filterProducts.length; i++){
@@ -90,9 +90,9 @@ function showproductsList(array){
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1">`+ product.name +`</h4>
-                        <small class="text-muted">` + product.soldCount + ` artículos vendidos</small>
+                        <span style="font-size: 22px; font-family: arial">`+ product.currency + ` ` + product.cost + ` </span>
                     </div>
-                    <div> `+ product.currency + ` `+ product.cost + ` </div> 
+                    
                     <div>` + product.description + `</div>
 
                 </div>

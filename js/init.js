@@ -40,15 +40,30 @@ var getJSONData = function(url){
     });
 }
 
-//dinamic nombre de usuario
-let nombreUsuario = document.createElement('a');
+/* function logOut(event){
+  event.preventDefault();
+  sessionStorage.removeItem('logueado');
+  sessionStorage.removeItem('mostrar-usuario');
+  window.location.href = 'login.html';
+} */
 
-nombreUsuario.className = 'py-2 d-none d-md-inline-block';
-nombreUsuario.href= "#";
+//link a perfil de usuario
+let linkPerfil = document.createElement('a');
 
- //guardo nombre de usuario para mostrar en la barra
- let mostrarUsuario = sessionStorage.getItem('mostrar-usuario')
- nombreUsuario.innerHTML += mostrarUsuario;
+linkPerfil.className = 'py-2 d-none d-md-inline-block';
+linkPerfil.href= "#";
+
+ //tomo nombre de usuario para mostrar en la barra
+ let nombreUsuario = sessionStorage.getItem('mostrar-usuario')
+ linkPerfil.innerHTML = nombreUsuario;
+
+ //log out
+/*  let cerrarSesion = document.createElement('a');
+
+ cerrarSesion.className ='py-2 d-none d-md-inline-block';
+ cerrarSesion.href= "#";
+ cerrarSesion.innerHTML = "Cerrar Sesión";
+ cerrarSesion.setAttribute('onclick', "logOut(event)"); */
 
 if (!window.location.href.endsWith("login.html") && 
     !(sessionStorage.getItem('logueado'))) { //me redirige al login si no estoy en él
@@ -58,15 +73,17 @@ if (!window.location.href.endsWith("login.html") &&
 
 
 
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
- //muestro el nombre en la barra
-  document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(nombreUsuario);
+//muestro el nombre en la barra si existe nav bar
 
+if (document.getElementsByClassName("py-2 d-none d-md-inline-block")[0] != null) {
+  document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(linkPerfil);
+  /* document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(cerrarSesion); */
+}
 });
 
 

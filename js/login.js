@@ -1,5 +1,5 @@
-function detenerEvento(evento) { //detiene el submit del formulario
-    evento.preventDefault();
+function logIn(evento) { 
+    evento.preventDefault();   //detiene el submit del formulario
     sessionStorage.setItem('logueado', 'true');
     let user = document.getElementById("user").value;
     sessionStorage.setItem('mostrar-usuario', user);
@@ -11,22 +11,21 @@ function detenerEvento(evento) { //detiene el submit del formulario
 
 
 }
+
 function onSignIn(googleUser) {
        
     var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
+    
+    
     //inicio de sesión con google id
     sessionStorage.setItem('logueado', 'true');
+    sessionStorage.setItem('mostrar-usuario', profile.getGivenName()); //nombre usuario en barra
     window.location.href = 'index.html';
 
 }
 
-document.getElementById("log in").addEventListener("submit", detenerEvento);
+
+
+document.getElementById("log in").addEventListener("submit", logIn);
   
 
