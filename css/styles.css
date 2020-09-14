@@ -139,3 +139,10 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.btn-primary{
+
+  background-color: #343a40;
+  border-color: #343a40;
+}
+

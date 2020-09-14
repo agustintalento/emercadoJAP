@@ -13,9 +13,76 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style>
+
+    #relatedProducts{
+      text-align: center;
+      
+    }
+
+    #relatedProducts a{
+      padding: 0.5em;
+      margin-right: 1em;
+      margin-left: 4em;
+      margin-top: 2em;
+      border: none;
+
+    }
+    #relatedProducts h3{
+      padding-top: 0.5em;
+      font-size: 1.5em;
+      
+    }
+    #relatedProducts img{
+      padding: 0em;
+      border-width: 0em;
+    }
+    #relatedProducts p{
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+    }
+   
+    #soldC, #categorie, .commentdate {
+      font-size: small;
+      font-style: italic;
+    }
+
+    h1 {
+      margin-bottom: 0em;
+    }
+    h2 {
+    
+      font-size: 32px; 
+      font-family: arial;
+    }
+    #comments {
+      font-family: sans-serif;
+      font-size: 14px;
+      
+    }
+    .uname{
+      font-weight: bold;
+    }
+    .btn-lg{
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      line-height: 1;
+      border-radius: 0rem;
+    }
+    .subtitle{
+      font-family: 'Raleway', serif !important;
+      text-align: center;
+    }
+    textarea{
+      width: 507px;
+      height: 45px;
+      
+    }
+
+  </style>
 </head>
 
-<body>
+<body> 
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -25,21 +92,65 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main class="container p-5">
+    <div class="row" >
+      <div id="slider" class="col-md-6" ></div>
+      <div class="col-md-6">
+        <div>
+          <h1 id="prodName"></h1>
+          <span id="soldC"></span>
+          <span id="categorie"></span>
+          
+          <h2 id="productCost"></h2>
+          <p id="prodescription"></p>
+        </div>
+
+        <div id="lilimages" class="row"></div>
+        <hr>
+      </div>  
     </div>
-  </div>
+
+   
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <h2 class="subtitle">Comentarios</h2><br>
+        <div id="comments" class="col-md-12"> </div><br><br>
+        <hr>
+        <h3>Deja tu comentario</h3>
+        <form id="userComment"> 
+          <div id="ratingestrellas">
+            <span class="fa fa-star checked" onmouseover="starmark(this)" onclick="starmark(this)" id="1"></span>
+            <span class="fa fa-star" onmouseover="starmark(this)" onclick="starmark(this)" id="2"></span>
+            <span class="fa fa-star" onmouseover="starmark(this)" onclick="starmark(this)" id="3"></span>
+            <span class="fa fa-star" onmouseover="starmark(this)" onclick="starmark(this)" id="4"></span>
+            <span class="fa fa-star" onmouseover="starmark(this)" onclick="starmark(this)" id="5"></span>
+          </div>
+          <br>
+          
+          <textarea maxlength="2000" class="btn-lg" name="textareaComment" placeholder="Deja tu comentario..." required></textarea><br><br>
+          <input class="btn btn-primary" type="submit"  value="Comentar">
+        </form>
+      </div>
+      
+      <div class="col-md-6">
+        <h2 class="subtitle">Productos relacionados</h2>
+        <div id="relatedProducts" class="row"></div>
+      </div>
+    
+    </div>
+  
+</main>
+
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    
     </div>
   </footer>
   <div id="spinner-wrapper">

@@ -40,36 +40,42 @@ var getJSONData = function(url){
     });
 }
 
-/* function logOut(event){
-  event.preventDefault();
-  sessionStorage.removeItem('logueado');
-  sessionStorage.removeItem('mostrar-usuario');
-  window.location.href = 'login.html';
-} */
 
-//link a perfil de usuario
-let linkPerfil = document.createElement('a');
-
-linkPerfil.className = 'py-2 d-none d-md-inline-block';
-linkPerfil.href= "#";
-
- //tomo nombre de usuario para mostrar en la barra
- let nombreUsuario = sessionStorage.getItem('mostrar-usuario')
- linkPerfil.innerHTML = nombreUsuario;
-
- //log out
-/*  let cerrarSesion = document.createElement('a');
-
- cerrarSesion.className ='py-2 d-none d-md-inline-block';
- cerrarSesion.href= "#";
- cerrarSesion.innerHTML = "Cerrar Sesión";
- cerrarSesion.setAttribute('onclick', "logOut(event)"); */
-
+//funcion que me redirige al login si no inicié sesión
 if (!window.location.href.endsWith("login.html") && 
     !(sessionStorage.getItem('logueado'))) { //me redirige al login si no estoy en él
         window.location.href = "login.html";
 
 };
+
+//tomo nombre de usuario para mostrar en la barra
+let nombreUsuario = sessionStorage.getItem('mostrar-usuario');
+
+//boton de perfil de usuario
+
+let divBoton = document.createElement('div');
+divBoton.className = "btn-group";
+
+divBoton.innerHTML =  ` <button type="button" class="btn btn-primary"><i class="fa fa-user" aria-hidden="true"></i>  ` + nombreUsuario + `</button>
+<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <span class="sr-only">Toggle Dropdown</span>
+</button>
+<div class="dropdown-menu">
+  <p class="dropdown-item">Hola `+ nombreUsuario + ` </p>
+  <hr>
+  <a class="dropdown-item" href="my-profile.html">Ver perfil</a>
+  <a class="dropdown-item" href="#" onclick="logOut(event)">Cerrar sesión</a>
+</div>`
+
+
+
+//funcion de cerrar sesión
+function logOut(event){
+  event.preventDefault();
+  sessionStorage.removeItem('logueado');
+  sessionStorage.removeItem('mostrar-usuario');
+  window.location.href = 'login.html';
+} 
 
 
 
@@ -81,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function(e){
 //muestro el nombre en la barra si existe nav bar
 
 if (document.getElementsByClassName("py-2 d-none d-md-inline-block")[0] != null) {
-  document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(linkPerfil);
-  /* document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(cerrarSesion); */
+  document.getElementsByClassName("py-2 d-none d-md-inline-block")[0].parentElement.appendChild(divBoton);
+  
 }
 });
 
