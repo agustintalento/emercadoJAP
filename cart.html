@@ -32,6 +32,30 @@
       }
     }
 
+    h1 {
+
+     padding: 3rem;
+     padding-bottom: 0rem; 
+     padding-left: 0rem;
+    }
+    .subtitulo {
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+    button, input, select {
+      font-size: smaller;
+    }
+    .cost {
+      text-align: end;
+      padding-top: 5rem;
+      padding-left: 10rem;
+    }
+    #comprar {
+      border-radius: 10px;      
+      box-sizing: border-box;
+      border: thin solid rgba(0, 0, 0, 0.2);
+    }
+  
   </style>
   
 </head>
@@ -43,17 +67,96 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="row container">
+    <div class="col-1">
+    </div>
+    <div class="col-6">
+      <h1>Carrito de Compras</h1>
+    </div>
+    <div class="col-4">
+    </div>
+    <div class="col-1">
+      <h5 class="cost">Precio</h5>
     </div>
   </div>
+  <hr class="container">
+  <div id="carta" class="container">
+  </div>
+  <div class="row">
+      
+
+    <div class="col-1">
+    </div>
+    <div class="col-4">
+    </div>  
+    <div class="col-4">
+    </div>
+    <div class="container col-3">
+      
+        <h5>Subtotal: <span id="subtotal"></span> </h5>
+    </div>
+    
+  </div><br><br>
+
+  <form id="comprar" class="container">
+    
+    <div class="row">
+      <div class="col-1">
+      </div>
+      <div class="col-4">
+        <h2 class="container subtitulo">Método de Envío</h2>
+      </div>  
+      <div class="col-2">
+      </div>
+      <div class="container col-4">
+        <h2 class="container subtitulo">Forma de Pago</h2>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-4 container">
+
+          <label for="envio">Tipo de Envío: </label><br> 
+          <input type="radio" name="envio" id="standard" value="standard" checked>
+          <label for="standard">Standard (12-15 días +5% del subtotal)</label><br>
+          <input type="radio"  name="envio" id="express" value="express">
+          <label for="express">Express (5-8 días +7% del subtotal)</label><br>
+          <input type="radio" name="envio" id="premium" value="premium">
+          <label for="premium">Premium (2-5 días +15% del subtotal)</label><br><br>
+      </div> 
+      <div class="col-1"></div>
+      <div class="col-4 container">
+
+        <input type="radio" name="pago" value="credito" checked>
+        <label for="credito">Tarjeta de Crédito</label><br>
+        <input type="radio"  name="pago" value="transferencia">
+        <label for="express">Transferencia Bancaria</label><br>
+      </div> 
+
+    </div>    
+    <div class="row">
+       
+      <div class="col-5 container">
+
+          <label for="direccion">Dirección: </label><br>
+          <input type="text" name="direccion" placeholder="Calle" required>
+          <input type="text" name="direccion" placeholder="Número" size="5" required><br><br>
+          <input type="text" name="direccion" placeholder="Ciudad" required><br><br>
+          <label for="pais">País: </label><br>
+          <input type="text" name="pais" placeholder="País" required><br><br>
+        
+      </div>
+    
+      <div class="container col-4">
+        <h2>Total: <span id="total"></span></h2><br>
+        <input type="submit" class="btn btn-primary btn-lg" value="Comprar">
+
+      </div>
+      
+    </div>
+  </form> 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -70,3 +173,4 @@
 </body>
 
 </html>
+

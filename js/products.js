@@ -84,7 +84,7 @@ function showproductsList(array){
         
 
         htmlContentToAppend += `
-        <a href="product-info.html?name=`+ product.name + `" class="list-group-item list-group-item-action">
+        <a href="product-info.html?name=`+ product.name + `" class="list-group-item list-group-item-action noborder">
             <div class="row">
                 <div class="col-3">
                     <img src="` + product.imgSrc + `" alt="` + product.desc + `" class="img-thumbnail">

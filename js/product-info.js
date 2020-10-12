@@ -10,14 +10,61 @@ function showproductInfo(productInfo){
     document.getElementById("soldC").innerHTML = productInfo.soldCount;
     document.getElementById("categorie").innerHTML = productInfo.category + ' vendidos';
 
-    document.getElementById("slider").innerHTML = `<img src="` + productInfo.images[0] + `" class="img-thumbnail" >`;
+    //carousel
+    
+    document.getElementById("slider").innerHTML = `
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+            <li data-target="#carousel" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="` + productInfo.images[0] + `" alt="">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="` + productInfo.images[1] + `" alt="">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="` + productInfo.images[2] + `" alt="">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="` + productInfo.images[3] + `" alt="">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="` + productInfo.images[4] + `" alt="">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+  </div>
+`  
             
 }
 
 //cambiar imagen principal
-function changeImg(event, imageSrc){
+function changeImg(event, index){
     event.preventDefault(); //que no siga el link cuando clickeas imagen
-    document.getElementById("slider").innerHTML = `<img src="` + imageSrc + `" class="img-thumbnail" >`;
+    //para que quede el carousel cuando cambias de imagen
+
+    var imagesList = document.getElementById("slider").getElementsByClassName("carousel-item");
+    var activeImg = document.getElementById("slider").querySelector(".carousel-item.active");
+    activeImg.classList.remove("active");
+    imagesList[index].classList.add("active");
+
+    //para que el indicador coincida con el numero de imagen
+    var indicators = document.querySelector("ol.carousel-indicators");
+    indicators.querySelector(".active").classList.remove("active");
+    indicators.getElementsByTagName("li")[index].classList.add("active");
 }
 
 //mostrar imagenes pequeñas
@@ -30,7 +77,7 @@ function showImagesGallery(array){
 
         //cambio de imagen pequeña a grande
         htmlContentToAppend += `
-        <a href='#' onclick="changeImg(event, '` + imageSrc + `')" class="col-lg-3 col-md-4 col-6"> 
+        <a href='#' onclick="changeImg(event, ` + i + `)" class="col-lg-3 col-md-4 col-6"> 
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
             </div>
