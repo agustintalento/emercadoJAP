@@ -111,28 +111,25 @@
       <div class="col-2">
       </div>
       <div class="container col-4">
-        <h2 class="container subtitulo">Forma de Pago</h2>
+        <h3 class="container subtitulo">Finaliza tu Compra</h3>
       </div>
     </div>
     <div class="row">
 
       <div class="col-4 container">
 
-          <label for="envio">Tipo de Envío: </label><br> 
-          <input type="radio" name="envio" id="standard" value="standard" checked>
-          <label for="standard">Standard (12-15 días +5% del subtotal)</label><br>
-          <input type="radio"  name="envio" id="express" value="express">
-          <label for="express">Express (5-8 días +7% del subtotal)</label><br>
-          <input type="radio" name="envio" id="premium" value="premium">
-          <label for="premium">Premium (2-5 días +15% del subtotal)</label><br><br>
+        <label for="envio">Tipo de Envío: </label><br> 
+        <select name="tipoEnvio" id="envio">
+          <option value="0.05">Standard(12-15 días +5% del subtotal)</option>
+          <option value="0.07">Express (5-8 días +7% del subtotal)</option>
+          <option value="0.15">Premium (2-5 días +15% del subtotal)</option>
+        </select>    
+      
       </div> 
       <div class="col-1"></div>
       <div class="col-4 container">
-
-        <input type="radio" name="pago" value="credito" checked>
-        <label for="credito">Tarjeta de Crédito</label><br>
-        <input type="radio"  name="pago" value="transferencia">
-        <label for="express">Transferencia Bancaria</label><br>
+        <h4>Costo de Envío: <span id="costoEnvio"></span> </h4>
+        <h2>Total: <span id="total"></span></h2><br>
       </div> 
 
     </div>    
@@ -140,23 +137,73 @@
        
       <div class="col-5 container">
 
-          <label for="direccion">Dirección: </label><br>
-          <input type="text" name="direccion" placeholder="Calle" required>
-          <input type="text" name="direccion" placeholder="Número" size="5" required><br><br>
-          <input type="text" name="direccion" placeholder="Ciudad" required><br><br>
+          <label>Dirección: </label><br>
+          <input type="text" name="calle" placeholder="Calle" required>
+          <input type="text" name="numero" placeholder="Número" size="5" required><br><br>
+          <input type="text" name="ciudad" placeholder="Ciudad" required><br><br>
           <label for="pais">País: </label><br>
           <input type="text" name="pais" placeholder="País" required><br><br>
         
       </div>
+  </form>    
     
       <div class="container col-4">
-        <h2>Total: <span id="total"></span></h2><br>
-        <input type="submit" class="btn btn-primary btn-lg" value="Comprar">
+        <!-- Boton de Forma de Pago -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formaPago">
+          Forma de Pago
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="formaPago" tabindex="-1" aria-labelledby="formaPago" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal">Selecciona forma de pago:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+                  <div class="form-group">
+                      
+                      <input form="comprar" id="credito" type="radio" name="pago" value="credito">
+                      <label for="credito">Tarjeta de Crédito</label><br><br>
+                      <fieldset id="fieldCredito">
+                        <label for="tarjeta">Número de Tarjeta: </label>
+                        <input form="comprar" id="tarjeta" type="text" name="tarjeta" placeholder="16 dígitos" required>
+                        <label for="verificador">CVV:</label>
+                        <input form="comprar" id="verificador" type="text" name="verificador" size="3" placeholder="CVV" required><br><br>
+                        <label for="fecha">Vencimiento: </label>
+                        <input form="comprar" id="fecha" type="text" name="fecha" size="6" placeholder="(MM/AA)" required><br><br><hr>
+                      </fieldset>
+                      
+                      <input form="comprar" id="transferencia" type="radio"  name="pago" value="transferencia">
+                      <label for="transferencia">Transferencia Bancaria</label><br> 
+                      <fieldset id="fieldTransferencia"> 
+                        <input id="nroCuenta" form="comprar" type="text" name="cuenta" placeholder="Nro. de Cuenta" required>
+                      </fieldset>
+                      <p id="demo"></p>
+                      <p id="demoFecha"></p>
+                      <p id="demoVerificador"></p>
+                      <div class="modal-footer">
+                        <input form="comprar" type="submit" class="btn btn-primary btn-lg" value="Comprar">
+                      </div>
+                      
+                  </div>
+                
+              </div>
+              
+             
+            </div>
+          </div>
+        </div><br><br>
+
+
 
       </div>
       
     </div>
-  </form> 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
