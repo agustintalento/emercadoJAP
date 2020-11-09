@@ -29,22 +29,27 @@ var productsArray = [];
 function precioAscendente() {
     productsArray = productsArray.sort(function (a, b) { //funcion que ordena de forma ascendente
         return a.cost - b.cost;
-      })
-      showproductsList(productsArray);
+    })
+    //showproductsList(productsArray);
+    showCards(productsArray);
+
 }
 
 function precioDescendente() {
     productsArray = productsArray.sort(function (a, b) { //funcion que ordena de forma descendente
         return b.cost - a.cost;
-      })
-      showproductsList(productsArray);
+    })
+    //showproductsList(productsArray);
+    showCards(productsArray);
+
 }
 
 function ordenoRelevancia() {
     productsArray = productsArray.sort(function (a, b) { 
         return b.soldCount - a.soldCount; //misma funcion ordena descendente, pero esta vez por art. vendidos
-      })
-      showproductsList(productsArray);
+    })
+    //showproductsList(productsArray);
+    showCards(productsArray);
 }
 
  
@@ -70,7 +75,8 @@ function limpiar() {
     document.getElementById("precioMin").value = "";
     document.getElementById("precioMax").value = "";
     
-    showproductsList(productsArray);
+   // showproductsList(productsArray);
+   showCards(productsArray);
 }
 
 //muestro los productos
@@ -101,14 +107,40 @@ function showproductsList(array){
             </div>
         </div>
         `
+    }
+
+    document.getElementById("productos").innerHTML = htmlContentToAppend; 
+}
+
+function showCards(array) {
+
+    let htmlContentToAppend = "";
+    let filterProducts = filtro(array);
+    for(let i = 0; i < filterProducts.length; i++){
+        let product = filterProducts[i];
+        
+
+        htmlContentToAppend += `
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                    <a href="product-info.html?name=`+ product.name + `" class="list-group-item list-group-item-action noborder">
+                        <img class="card-img-top" src="` + product.imgSrc + `" alt="` + product.desc + `">
+                        <div class="card-body">
+                            <h5 class="card-title">`+ product.name +`</h5>
+                            <p class="card-text">` + product.description + `</p>
+                            <h5 class="card-title">`+ product.currency + ` ` + product.cost + `</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        `
 
 
 
     };
     document.getElementById("productos").innerHTML = htmlContentToAppend; 
-};
 
-
+}
 
 
 
@@ -116,22 +148,21 @@ function showproductsList(array){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
-
-
-    
-getJSONData(PRODUCTS_URL).then(function(resultObj){
-    if (resultObj.status === "ok")
-    {
-        productsArray = resultObj.data;
-        //Muestro las productos 
-        showproductsList(productsArray);
+  
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            productsArray = resultObj.data;
+            //Muestro las productos 
+            //showproductsList(productsArray);
+            showCards(productsArray);
     };
 
 });
 
 
 //creo un evento en el cual se filtran los productos al clickear el boton filtrar
-document.getElementById("filter").addEventListener('click', () => showproductsList(productsArray) );
+document.getElementById("filter").addEventListener('click', () => showCards(productsArray) );
 
 //evento para limpiar los parametros del filtro
 document.getElementById("limpiar").addEventListener('click', limpiar );

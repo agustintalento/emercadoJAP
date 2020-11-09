@@ -28,7 +28,6 @@
       }
     }
    
-    
   </style>
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -45,18 +44,29 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
+
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="row">
+      <h1>Mi Perfil</h1>
+    </div>
+    <hr>
+    <div id="contenedorPerfil" class="row">
+      <form class="container">
+        <p>Nombre completo: <span id="nombre"></span> </p><br>
+        <p>Edad: <span id="edad"></span> </p><br>
+        <p>E-mail: <span id="mail"></span> </p><br>
+        <p>Teléfono: <span id="telefono"></span> </p><br>
+
+      </form>
+      <button id="botonEditarPerfil" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editarPerfil">
+        Editar Perfil
+      </button>
     </div>
   </div>
+
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
   <div class="alert fade alert-success" role="alert" id="alertResult">

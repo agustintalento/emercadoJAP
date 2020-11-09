@@ -33,7 +33,7 @@ function importCart(){
                 <h5 id="precio"> ` + `Precio unitario: ` + ` ` + article.unitCost +  ` `  + article.currency +  ` </h4><br>
                 
                 <label > Cantidad:  
-                <input class="cantidad" type="number" min="0" value="` + article.count + `" required><br>
+                <input form="comprar" class="cantidad" type="number" min="1" value="` + article.count + `" required><br>
                 </label>
             
             </div>
@@ -130,45 +130,39 @@ function cardFields(e) {
     var regexInputVerificador = document.getElementById("verificador");
     var inputValido = true;
 
-    document.getElementById("demo").innerHTML = '';
-    document.getElementById("demoVerificador").innerHTML = '';
-    document.getElementById("demoFecha").innerHTML = '';
+  
+    var demoText = "";
+    var demoVerText = "";
+    var demoFechaText = "";
     
     if(document.getElementById("comprar")["pago"].value === "credito") {
         
-        if (regexTarjeta.test(regexInputTarjeta.value)){
-            document.getElementById("demo").innerHTML = '';
-            } else {
-            document.getElementById("demo").innerHTML = 'Nro. de tarjeta incorrecto';
+        if (!regexTarjeta.test(regexInputTarjeta.value)){
+            demoText = 'Nro. de tarjeta incorrecto';
             inputValido = false;
         }
         
-        if (regexFecha.test(regexInputFecha.value)) {
-            document.getElementById("demoFecha").innerHTML = '';
-            } else {
-            document.getElementById("demoFecha").innerHTML = 'Vencimiento incorrecto';
+        if (!regexFecha.test(regexInputFecha.value)){
+            demoFechaText = 'Vencimiento incorrecto';
+            inputValido = false;
+        }
+        
+        if (!regexVerificador.test(regexInputVerificador.value)) {
+            demoVerText = 'Código de seguridad de 3 o 4 dígitos';
             inputValido = false;
         }
 
-        
-        if (regexVerificador.test(regexInputVerificador.value)) {
-            
-            document.getElementById("demoVerificador").innerHTML = '';
-            } else {
-            document.getElementById("demoVerificador").innerHTML = 'Código de seguridad de 3 o 4 dígitos';
-            inputValido = false;
-        }
     } else {
-        if (regexBank.test(regexInputBank.value)) {
-            document.getElementById("demo").innerHTML = '';
-            } else {
-            document.getElementById("demo").innerHTML = 'Ingrese Cuenta Bancaria correcta';
+        if (!regexBank.test(regexInputBank.value)) {
+            demoText = 'Ingrese Cuenta Bancaria correcta';
             inputValido = false;
         }
     }
-    
-    return inputValido;
-   
+    document.getElementById("demo").innerHTML = demoText;
+    document.getElementById("demoVerificador").innerHTML = demoVerText;
+    document.getElementById("demoFecha").innerHTML = demoFechaText;
+
+    return inputValido;  
 }
 
 
@@ -182,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function(e){
           articles = resultObj.data.articles;
           importCart();
           
-        };
+        }
 
     });
 
@@ -201,8 +195,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             document.getElementById("fieldTransferencia").disabled = true ;
            
         }
-       
-    })
+    });
 
     //deshabilito campo de tarjeta de crédito, y habilito el de cta. bancaria
     document.getElementById("transferencia").addEventListener('click', function() {
@@ -211,12 +204,10 @@ document.addEventListener("DOMContentLoaded", function(e){
             document.getElementById("fieldTransferencia").disabled = false;
             document.getElementById("fieldCredito").disabled = true;
         }
-    
-    })
+    });
 
     //actualizacion de total, subtotal y costo de envio cuando cambia el tipo de envio
     document.getElementById("envio").addEventListener('click', subtotalUpdate);
-
 
     //mensaje de compra realizada con exito
     document.getElementById("comprar").addEventListener("submit", function(evento){
